@@ -38,3 +38,27 @@ button:hover {
 #databaseDisplay div:last-child {
     border-bottom: none;
 }
+
+@media (max-width: 600px) {
+    body {
+        margin: 10px;
+    }
+
+    h1 {
+        font-size: 24px;
+    }
+
+    button {
+        padding: 8px 15px;
+        margin: 0 5px 10px 0;
+        font-size: 14px;
+    }
+
+    #databaseDisplay {
+        padding: 5px;
+    }
+
+    #databaseDisplay div {
+        padding: 6px 0;
+    }
+}
