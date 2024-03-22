@@ -44,12 +44,34 @@ document.getElementById('decryptBtn').addEventListener('click', () => {
 function mostrarDB(db) {
     const dbContainer = document.getElementById('databaseDisplay');
     dbContainer.innerHTML = '';
-    db.forEach(registro => {
-        const registroDiv = document.createElement('div');
-        registroDiv.textContent = `ID: ${registro.id}, Nombre: ${registro.nombre}, Secreto: ${registro.secreto}`;
-        dbContainer.appendChild(registroDiv);
+    const table = document.createElement('table');
+    const thead = document.createElement('thead');
+    const tbody = document.createElement('tbody');
+    const headRow = document.createElement('tr');
+
+    ['ID', 'Nombre', 'Secreto'].forEach(headerText => {
+        const header = document.createElement('th');
+        header.textContent = headerText;
+        headRow.appendChild(header);
     });
+
+    thead.appendChild(headRow);
+    table.appendChild(thead);
+
+    db.forEach(registro => {
+        const row = document.createElement('tr');
+        Object.values(registro).forEach(text => {
+            const cell = document.createElement('td');
+            cell.textContent = text;
+            row.appendChild(cell);
+        });
+        tbody.appendChild(row);
+    });
+
+    table.appendChild(tbody);
+    dbContainer.appendChild(table);
 }
+
 
 document.getElementById('encryptBtn').addEventListener('click', () => {
     const dbEncriptada = encriptarDB(database);
